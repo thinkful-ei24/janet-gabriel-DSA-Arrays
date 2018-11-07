@@ -83,8 +83,13 @@ function main() {
 
   let arr = new Array();
 
-  arr.push('tauhida');
-  console.log(arr.get(0));
+  arr.push(5);
+  arr.push(15);
+  arr.push(19);
+  arr.push(45);
+  arr.push(10);
+
+  console.log('Array at 0 is ' + arr.get(0));
 
   console.log(arr);
 }
