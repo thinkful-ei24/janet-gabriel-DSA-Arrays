@@ -106,7 +106,6 @@
 
 //Remove Characters
 
-
 //O(n)
 // function removeVowels(str){
 //     const vowels = ['a','e','i','o','u'];
@@ -133,7 +132,7 @@
 //     for(let j=0; j < arr.length; j++ ){
 //         if(j!==i){
 //             num *= arr[j];
-//         }  
+//         }
 //     }
 //     newArr.push(num);
 //     // console.log(num);
@@ -143,7 +142,6 @@
 // }
 
 // console.log(products([1, 3, 9, 4]));
-
 
 // function twoDArray (arr) {
 //     const newArr = [];
@@ -167,41 +165,67 @@
 
 // }
 
-
 // console.log(twoDArray([[1,0,1,1,0],
 //     [0,1,1,1,0],
 //     [1,1,1,1,1],
 //     [1,0,1,1,1],
 //     [1,1,1,1,1]]));
 
-function zeroOneArray(arr) {
-  const newArr = [];
+// function zeroOneArray(arr) {
+//   const newArr = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push([]);
-    for (let j = 0; j < arr[i].length; j++) newArr[i].push(arr[i][j]);
+//   for (let i = 0; i < arr.length; i++) {
+//     newArr.push([]);
+//     for (let j = 0; j < arr[i].length; j++) newArr[i].push(arr[i][j]);
+//   }
+
+//   for (let i = 0; i < arr.length; i++) {
+
+//     for (let j = 0; j < arr[i].length; j++) {
+//       if (arr[i][j] === 0) {
+//         for (let n = 0; n < arr.length; n++) {
+//           newArr[n][j] = 0;
+//         }
+
+//         for (let m = 0; m < arr[i].length; m++) {
+//           newArr[i][m] = 0;
+//         }
+//       }
+//     }
+//   }
+
+//   return newArr;
+// }
+
+// console.log(zeroOneArray([[1,0,1,1,0],
+//     [0,1,1,1,0],
+//     [1,1,1,1,1],
+//     [1,0,1,1,1],
+//     [1,1,1,1,1]]));
+
+/*
+azo-nma
+amnoza
+azo-nam
+manoza
+*/
+
+function stringRotation(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
   }
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < str1.length; i++) {
+    if (str2[i] === str1[0]) {
+      let rotation = str2.substring(i) + str2.substring(0, i);
 
-    for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === 0) {
-        for (let n = 0; n < arr.length; n++) {
-          newArr[n][j] = 0;
-        }
-        
-        for (let m = 0; m < arr[i].length; m++) {
-          newArr[i][m] = 0;
-        }
+      if (rotation === str1) {
+        return true;
       }
     }
   }
-
-  return newArr;
+  return false;
 }
 
-console.log(zeroOneArray([[1,0,1,1,0],
-    [0,1,1,1,0],
-    [1,1,1,1,1],
-    [1,0,1,1,1],
-    [1,1,1,1,1]]));
+console.log(stringRotation('amazon', 'azonma'));
+console.log(stringRotation('amazon', 'azonam'));
