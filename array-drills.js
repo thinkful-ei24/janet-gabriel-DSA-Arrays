@@ -84,22 +84,124 @@
 //   return mergedArray;
 // }
 
-function mergeArrays(array1, array2) {
-  const tempArray = [];
+// function mergeArrays(array1, array2) {
+//   const tempArray = [];
 
-  while (array1.length || array2.length) {
-    if (typeof array1[0] === 'undefined') {
-      tempArray.push(array2[0]);
-      array2.splice(0, 1);
-    } else if (array1[0] > array2[0]) {
-      tempArray.push(array2[0]);
-      array2.splice(0, 1);
-    } else {
-      tempArray.push(array1[0]);
-      array1.splice(0, 1);
+//   while (array1.length || array2.length) {
+//     if (typeof array1[0] === 'undefined') {
+//       tempArray.push(array2[0]);
+//       array2.splice(0, 1);
+//     } else if (array1[0] > array2[0]) {
+//       tempArray.push(array2[0]);
+//       array2.splice(0, 1);
+//     } else {
+//       tempArray.push(array1[0]);
+//       array1.splice(0, 1);
+//     }
+//   }
+//   return tempArray;
+// }
+
+// console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
+
+//Remove Characters
+
+
+//O(n)
+// function removeVowels(str){
+//     const vowels = ['a','e','i','o','u'];
+//     let newStr = '';
+
+//     for(let i=0; i<str.length; i++){
+//         if(vowels.includes(str[i])!==true){
+//             newStr += str[i];
+//         }
+//     }
+//     return newStr;
+// }
+
+// console.log(removeVowels("Battle of the Vowels: Hawaii vs. Grozny"));
+
+//Products
+
+// function products (arr){
+//  let num = 1;
+//  const newArr = [];
+
+//  for (let i=0; i<arr.length; i++){
+//     num = 1;
+//     for(let j=0; j < arr.length; j++ ){
+//         if(j!==i){
+//             num *= arr[j];
+//         }  
+//     }
+//     newArr.push(num);
+//     // console.log(num);
+//  }
+
+//  return newArr;
+// }
+
+// console.log(products([1, 3, 9, 4]));
+
+
+// function twoDArray (arr) {
+//     const newArr = [];
+
+//     for (let i = 0; i, i < arr.length; i++){
+
+//         for (let j = 0; j <arr.length; j++ ){
+
+//             if(arr[i][j] === 0){
+
+//                 arr[i].fill(0);
+
+//                 for(let k = 0; k<arr.length; k++){
+//                     arr[k][i]=0;
+//                 }
+//             }
+//         }
+//     }
+
+//     return arr;
+
+// }
+
+
+// console.log(twoDArray([[1,0,1,1,0],
+//     [0,1,1,1,0],
+//     [1,1,1,1,1],
+//     [1,0,1,1,1],
+//     [1,1,1,1,1]]));
+
+function zeroOneArray(arr) {
+  const newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push([]);
+    for (let j = 0; j < arr[i].length; j++) newArr[i].push(arr[i][j]);
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 0) {
+        for (let n = 0; n < arr.length; n++) {
+          newArr[n][j] = 0;
+        }
+        
+        for (let m = 0; m < arr[i].length; m++) {
+          newArr[i][m] = 0;
+        }
+      }
     }
   }
-  return tempArray;
+
+  return newArr;
 }
 
-console.log(mergeArrays([1, 3, 6, 8, 11], [2, 3, 5, 8, 9, 10]));
+console.log(zeroOneArray([[1,0,1,1,0],
+    [0,1,1,1,0],
+    [1,1,1,1,1],
+    [1,0,1,1,1],
+    [1,1,1,1,1]]));
