@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const mem = require('./memory');
 const memory = new mem();
 
@@ -17,7 +18,29 @@ class Array {
     this.length++;
   }
 
+  _resize(size) {
+    const oldPtr = this.ptr;
+    this.ptr = memory.allocate(size);
+    if (this.ptr === null) {
+      throw new Error('Out of memory');
+    }
+    memory.copy(this.ptr, oldPtr, this.length);
+    memory.free(oldPtr);
+    this._capacity = size;
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error('Index error');
+    }
+
+    return memory.get(this.ptr + index);
+  }
+
   pop() {
+    if (this.length === 0) {
+      throw new Error('Index error');
+    }
     const value = memory.get(this.ptr + this.length - 1);
     this.length--;
     return value;
@@ -37,25 +60,10 @@ class Array {
     this.length++;
   }
 
-  get(index) {
-    if (index < 0 || index >= this.length) {
-      throw new Error('Index error');
-    }
-
-    return memory.get(this.ptr + index);
-  }
-
-  getAll() {
-    for (let i = 0; i < this.length; i++) {
-      console.log(this.get(i));
-    }
-  }
-
   remove(index) {
     if (index < 0 || index >= this.length) {
       throw new Error('Index error');
     }
-
     memory.copy(
       this.ptr + index,
       this.ptr + index + 1,
@@ -63,30 +71,9 @@ class Array {
     );
     this.length--;
   }
-
-  _resize(size) {
-    const oldPtr = this.ptr;
-    this.ptr = memory.allocate(size);
-
-    if (this.ptr === null) {
-      throw new Error('Outta memory, kid');
-    }
-
-    memory.copy(this.ptr, oldPtr, this.length);
-    memory.free(oldPtr);
-    this._capacity = size;
-  }
 }
+Array.SIZE_RATIO = 3;
 
-function main() {
-  Array.SIZE_RATIO = 3;
+const arr = new Array();
 
-  let arr = new Array();
-
-  arr.push('tauhida');
-  console.log(arr.get(0));
-
-  console.log(arr);
-}
-
-main();
+console.log(arr);
